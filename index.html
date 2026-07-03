@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seminário sobre Titânio e suas Ligas com foco em Fundamentos de Ciência dos Materiais." />
+  <title>Titânio e Suas Ligas | Seminário FCM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef3f8;
+      --bg-deep: #dfe8f2;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-strong: #ffffff;
+      --text: #102030;
+      --muted: #506174;
+      --steel: #7f8b98;
+      --line: rgba(80, 97, 116, 0.15);
+      --accent: #6fb4e9;
+      --accent-2: #a7d6ff;
+      --accent-3: #d8ecff;
+      --shadow: 0 24px 60px rgba(16, 32, 48, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(111, 180, 233, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.9), transparent 24%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 42%, #edf4fa 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0));
+      opacity: 0.35;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 251, 255, 0.72);
+      border-bottom: 1px solid rgba(80, 97, 116, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--accent), #4c8ec5 70%, #2e5e8b);
+      box-shadow: 0 10px 24px rgba(111, 180, 233, 0.35);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.4rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.7);
+      border-color: rgba(111, 180, 233, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.92), rgba(240,246,252,0.72)),
+        linear-gradient(180deg, rgba(111, 180, 233, 0.08), rgba(255, 255, 255, 0));
+      border: 1px solid rgba(80, 97, 116, 0.1);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(111, 180, 233, 0.28), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(111, 180, 233, 0.11);
+      color: #24537a;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(111, 180, 233, 0.15);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.1rem, 7vw, 5.8rem);
+      letter-spacing: -0.03em;
+      color: #0a1723;
+    }
+
+    .hero-subtitle {
+      margin-top: 14px;
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      color: #355067;
+      font-weight: 600;
+    }
+
+    .hero-text {
+      margin: 18px 0 0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .meta-item {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(80, 97, 116, 0.08);
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #17324a;
+    }
+
+    .meta-item span {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .visual-panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(17, 35, 50, 0.92), rgba(31, 58, 82, 0.92)),
+        radial-gradient(circle at top, rgba(111, 180, 233, 0.4), transparent 45%);
+      color: white;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-panel::before,
+    .visual-panel::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(167, 214, 255, 0.16);
+      filter: blur(2px);
+    }
+
+    .visual-panel::before {
+      width: 220px;
+      height: 220px;
+      top: -60px;
+      right: -80px;
+    }
+
+    .visual-panel::after {
+      width: 140px;
+      height: 140px;
+      bottom: -50px;
+      left: -40px;
+    }
+
+    .visual-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.78);
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-number {
+      margin-top: 16px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(4rem, 8vw, 6.8rem);
+      line-height: 0.92;
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      font-size: 0.9rem;
+    }
+
+    main {
+      padding-bottom: 56px;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-card {
+      padding: 32px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(80, 97, 116, 0.1);
+      box-shadow: 0 18px 45px rgba(16, 32, 48, 0.08);
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #4a6881;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4.1vw, 3.2rem);
+      color: #102030;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 1rem;
+      max-width: 75ch;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .fact {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(232, 241, 250, 0.68));
+      border: 1px solid rgba(111, 180, 233, 0.16);
+    }
+
+    .fact b {
+      display: block;
+      color: #183149;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .fact span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .process-box {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(17, 35, 50, 0.95), rgba(26, 50, 72, 0.96));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .process-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .process-steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .step {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.09);
+      line-height: 1.6;
+    }
+
+    .step strong {
+      color: #b7dcfb;
+    }
+
+    .classification-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    .alloy-card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(237, 244, 250, 0.8));
+      border: 1px solid rgba(80, 97, 116, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .alloy-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(16, 32, 48, 0.08);
+    }
+
+    .alloy-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(111, 180, 233, 0.12);
+      color: #244f71;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+    }
+
+    .alloy-title {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+      color: #13283b;
+    }
+
+    .alloy-card p,
+    .alloy-card li {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .alloy-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .property-card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      border: 1px solid rgba(80, 97, 116, 0.12);
+    }
+
+    .property-card h3 {
+      font-size: 1.14rem;
+      margin-bottom: 10px;
+      color: #133047;
+    }
+
+    .property-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .application-card {
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(237, 244, 250, 0.72));
+      border: 1px solid rgba(80, 97, 116, 0.1);
+    }
+
+    .application-card h3 {
+      margin-bottom: 8px;
+      color: #133047;
+      font-size: 1.08rem;
+    }
+
+    .application-card p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .future-highlight {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(111, 180, 233, 0.18), rgba(255,255,255,0.92));
+      border: 1px solid rgba(111, 180, 233, 0.18);
+    }
+
+    .future-highlight strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #17324a;
+    }
+
+    .future-highlight p,
+    .future-list li {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .future-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .cta {
+      margin: 30px 0 16px;
+      padding: 34px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(17, 35, 50, 0.96), rgba(29, 61, 89, 0.96)),
+        radial-gradient(circle at top right, rgba(111, 180, 233, 0.28), transparent 38%);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      margin: 0 auto 24px;
+      max-width: 70ch;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #eaf6ff, #9dd2fb);
+      color: #102030;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 18px 30px rgba(111, 180, 233, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      animation: floatPulse 3.8s ease-in-out infinite;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 36px rgba(111, 180, 233, 0.34);
+      filter: brightness(1.02);
+    }
+
+    .download-btn::after {
+      content: "↘";
+      font-size: 1.1rem;
+    }
+
+    footer {
+      padding: 18px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .footer-line {
+      width: min(100%, 220px);
+      height: 1px;
+      margin: 0 auto 16px;
+      background: linear-gradient(90deg, transparent, rgba(80, 97, 116, 0.26), transparent);
+    }
+
+    @keyframes floatPulse {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-3px);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .two-col,
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .facts-grid,
+      .applications-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-card,
+      .section-card,
+      .cta {
+        padding: 22px;
+      }
+
+      .hero-meta,
+      .facts-grid,
+      .classification-grid,
+      .property-grid,
+      .applications-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra superior com navegação ancorada para facilitar a exploração da página -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand" aria-label="Seminário FCM">
+        <div class="brand-mark">Ti</div>
+        <div>
+          <div>Seminário FCM</div>
+          <small style="color: var(--muted); font-weight: 500;">Titânio e suas ligas</small>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#introducao">Introdução</a>
+        <a href="#classificacao">Ligas</a>
+        <a href="#propriedades">Propriedades</a>
+        <a href="#aplicacoes">Aplicações</a>
+        <a href="#futuro">Futuro</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: primeira impressão visual e conceitual do seminário -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Fundamentos de Ciência dos Materiais</span>
+          <h1>Titânio e Suas Ligas</h1>
+          <p class="hero-subtitle">Desempenho, Inovação e Aplicações Estratégicas</p>
+          <p class="hero-text">
+            O titânio ocupa uma posição singular entre os metais de engenharia: combina baixa densidade, elevada resistência específica, excelente resistência à corrosão e ampla versatilidade microestrutural. Esta página organiza os conceitos centrais do seminário em uma narrativa visual, clara e tecnicamente fundamentada.
+          </p>
+          <div class="hero-meta" aria-label="Destaques rápidos">
+            <div class="meta-item">
+              <strong>Alta relação resistência/peso</strong>
+              <span>Ideal para projetos que exigem desempenho estrutural com redução de massa.</span>
+            </div>
+            <div class="meta-item">
+              <strong>Passivação natural</strong>
+              <span>Forma espontaneamente um filme protetor de TiO<sub>2</sub> em contato com o ar.</span>
+            </div>
+            <div class="meta-item">
+              <strong>Aplicações críticas</strong>
+              <span>Presente em aeronaves, implantes, reatores e sistemas expostos a meios agressivos.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="visual-panel" aria-label="Resumo visual do elemento">
+          <div class="visual-title">Elemento de destaque</div>
+          <div class="visual-number">Ti</div>
+          <div class="visual-caption">
+            O titânio é o 9º elemento mais abundante e o 7º metal mais abundante na crosta terrestre, embora seu refino exija rotas metalúrgicas complexas e energeticamente intensivas.
+          </div>
+          <div class="visual-badges">
+            <span class="badge">Baixa densidade</span>
+            <span class="badge">Alta resistência</span>
+            <span class="badge">Biocompatível</span>
+            <span class="badge">Resistente à corrosão</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Introdução e extração -->
+    <section id="introducao">
+      <div class="container section-card">
+        <div class="section-heading">
+          <span class="section-kicker">1. Introdução e Extração</span>
+          <h2 class="section-title">Da descoberta do elemento ao desafio metalúrgico da extração</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="section-copy">
+              O titânio puro foi isolado apenas em 1910 por Matthew A. Hunter, um marco importante para a metalurgia de não ferrosos. Apesar de sua abundância geológica, o metal não ocorre livre em condições naturais, o que explica por que sua industrialização demorou tanto. Na natureza, ele aparece principalmente associado aos minerais Ilmenita (FeTiO<sub>2</sub>) e Rutilo (TiO<sub>2</sub>), que funcionam como matérias-primas estratégicas para a produção do metal.
+            </p>
+            <p class="section-copy">
+              Em termos de disciplina de Fundamentos de Ciência dos Materiais, o caso do titânio é um exemplo clássico de como termodinâmica, cinética e afinidade química controlam a rota de processamento. A elevada reatividade do titânio com oxigênio, nitrogênio e carbono impede uma redução direta simples como ocorre com muitos outros metais. Por isso, a metalurgia do titânio depende do Processo Kroll, que converte o minério em um intermediário volátil e, em seguida, reduz esse intermediário em atmosfera controlada, obtendo-se a chamada <strong>Esponja de Titânio</strong>.
+            </p>
+          </div>
+
+          <div class="process-box">
+            <h3>Foco FCM: por que o Processo Kroll é necessário?</h3>
+            <p style="margin: 0; color: rgba(255,255,255,0.82); line-height: 1.75;">
+              O titânio não é extraído de forma eficiente por redução carbonosa convencional porque forma compostos muito estáveis com gases leves. O Kroll resolve esse problema ao separar quimicamente o metal em etapas:
+            </p>
+            <div class="process-steps">
+              <div class="step"><strong>1. Cloração:</strong> o óxido é convertido em tetracloreto de titânio (TiCl<sub>4</sub>), um intermediário purificado e volátil.</div>
+              <div class="step"><strong>2. Redução:</strong> o TiCl<sub>4</sub> é reduzido com magnésio metálico, produzindo titânio sólido e cloreto de magnésio.</div>
+              <div class="step"><strong>3. Solidificação:</strong> o material resultante é a “esponja de titânio”, porosa e ainda sujeita a etapas posteriores de fusão e refino.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="facts-grid">
+          <div class="fact">
+            <b>1910</b>
+            <span>A data em que o titânio puro foi isolado com sucesso por Matthew A. Hunter.</span>
+          </div>
+          <div class="fact">
+            <b>9º elemento</b>
+            <span>Posição de destaque entre os elementos mais abundantes da crosta terrestre.</span>
+          </div>
+          <div class="fact">
+            <b>7º metal</b>
+            <span>Alta presença geológica, mas baixa disponibilidade direta na forma metálica.</span>
+          </div>
+          <div class="fact">
+            <b>TiO<sub>2</sub> e FeTiO<sub>2</sub></b>
+            <span>Principais fontes minerais para a cadeia industrial do titânio.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Classificação cristalográfica e ligas -->
+    <section id="classificacao">
+      <div class="container section-card">
+        <div class="section-heading">
+          <span class="section-kicker">2. Classificação Cristalográfica e Ligas</span>
+          <h2 class="section-title">A microestrutura define o comportamento em serviço</h2>
+        </div>
+        <p class="section-copy">
+          A classificação das ligas de titânio é frequentemente feita de acordo com a fase cristalina predominante à temperatura ambiente. Isso é decisivo para entender resistência mecânica, ductilidade, soldabilidade, comportamento em alta temperatura e resposta ao tratamento térmico.
+        </p>
+
+        <div class="classification-grid">
+          <article class="alloy-card">
+            <div class="alloy-tag">Titânio Comercialmente Puro</div>
+            <h3 class="alloy-title">Graus 1 a 4: fase α praticamente pura</h3>
+            <p>
+              Nessa categoria, não há adição intencional significativa de elementos de liga. A microestrutura é dominada pela fase alfa (α), o que favorece alta ductilidade e máxima resistência à corrosão, especialmente em ambientes marinhos, químicos e biomédicos.
+            </p>
+            <ul>
+              <li>Excelente conformabilidade e soldabilidade.</li>
+              <li>Baixa resistência mecânica comparada às ligas endurecíveis.</li>
+              <li>Aplicação em ambientes onde a corrosão é o fator dominante.</li>
+            </ul>
+          </article>
+
+          <article class="alloy-card">
+            <div class="alloy-tag">Ligas Alfa</div>
+            <h3 class="alloy-title">Estabilizadas por Al, O e N</h3>
+            <p>
+              As ligas alfa são reforçadas por elementos estabilizadores da fase α, como alumínio, oxigênio e nitrogênio. Mantêm boa estabilidade microestrutural e costumam apresentar excelente soldabilidade e resistência a temperaturas elevadas.
+            </p>
+            <ul>
+              <li>Boas propriedades em serviço contínuo sob aquecimento.</li>
+              <li>Comportamento estável, com menor sensibilidade a transformações de fase.</li>
+              <li>Usadas em componentes de motores e trocadores de calor.</li>
+            </ul>
+          </article>
+
+          <article class="alloy-card">
+            <div class="alloy-tag">Ligas Beta</div>
+            <h3 class="alloy-title">Estabilizadas por V, Mo, Cr e Nb</h3>
+            <p>
+              As ligas beta são projetadas para reter a fase β à temperatura ambiente. Os estabilizadores beta aumentam a temperabilidade, elevam a resistência mecânica e podem reduzir o módulo de elasticidade, característica valiosa em aplicações onde se deseja maior compatibilidade mecânica com tecidos ou estruturas leves.
+            </p>
+            <ul>
+              <li>Alta resistência após tratamentos térmicos.</li>
+              <li>Boa resposta à solução e envelhecimento.</li>
+              <li>Ótimas para projetos de alto desempenho mecânico.</li>
+            </ul>
+          </article>
+
+          <article class="alloy-card">
+            <div class="alloy-tag">Ligas Alfa + Beta</div>
+            <h3 class="alloy-title">Equilíbrio entre resistência e ductilidade</h3>
+            <p>
+              As ligas α+β combinam as vantagens das duas fases. A mais famosa e difundida no mundo é a Ti-6Al-4V, cuja popularidade decorre do compromisso entre alta resistência mecânica, boa ductilidade e ampla versatilidade de processamento.
+            </p>
+            <ul>
+              <li>Excelente relação resistência/peso.</li>
+              <li>Versatilidade para forjamento, usinagem e manufatura aditiva.</li>
+              <li>Aplicações intensivas em aeroespacial e biomédico.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Propriedades físico-químicas -->
+    <section id="propriedades">
+      <div class="container section-card">
+        <div class="section-heading">
+          <span class="section-kicker">3. Propriedades Físico-Químicas</span>
+          <h2 class="section-title">Passivação e biocompatibilidade como fundamentos de desempenho</h2>
+        </div>
+
+        <div class="property-grid">
+          <article class="property-card">
+            <h3>Termodinâmica da passivação</h3>
+            <p>
+              Ao ser exposto ao oxigênio do ar ou de soluções aquosas, o titânio reage espontaneamente formando uma película muito fina de TiO<sub>2</sub>, tipicamente entre 2 e 5 nm. Essa camada aparece instantaneamente porque a oxidação é termodinamicamente favorecida, com Energia Livre de Gibbs negativa. O resultado é um filme cerâmico denso que dificulta o transporte de íons e bloqueia a progressão da corrosão.
+            </p>
+          </article>
+
+          <article class="property-card">
+            <h3>Autocicatrização do filme</h3>
+            <p>
+              Se a superfície sofre um risco ou dano local, o filme passivador tende a se reconstruir rapidamente na presença de oxigênio. Essa autocicatrização explica por que o titânio apresenta desempenho excepcional em atmosferas agressivas e em meios fisiológicos, mantendo a integridade da superfície por longos períodos.
+            </p>
+          </article>
+
+          <article class="property-card">
+            <h3>Biocompatibilidade e osteointegração</h3>
+            <p>
+              A biocompatibilidade do titânio está ligada à sua capacidade de formar uma interface estável com o corpo humano. O filme de TiO<sub>2</sub> funciona como uma ponte cerâmica que “camufla” o metal do sistema imunológico e reduz reações adversas. Na prática, isso favorece a integração com o tecido ósseo e impede respostas como rejeição intensa ou encapsulamento fibroso pronunciado.
+            </p>
+          </article>
+
+          <article class="property-card">
+            <h3>Interação com osteoblastos</h3>
+            <p>
+              A rugosidade e a química superficial do óxido ajudam os osteoblastos a se interligarem fisicamente à superfície do implante. Essa ancoragem celular fortalece a osteointegração e explica por que o titânio se tornou referência em próteses e implantes ortopédicos e odontológicos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aplicações -->
+    <section id="aplicacoes">
+      <div class="container section-card">
+        <div class="section-heading">
+          <span class="section-kicker">4. Aplicações</span>
+          <h2 class="section-title">Do laboratório às estruturas críticas</h2>
+        </div>
+        <p class="section-copy">
+          A combinação entre baixa densidade, resistência mecânica e resistência à corrosão torna o titânio um material de alto valor tecnológico. Sua seleção costuma ocorrer quando os critérios de segurança, durabilidade e redução de massa são prioritários.
+        </p>
+
+        <div class="applications-grid">
+          <article class="application-card">
+            <h3>Aeroespacial e Automotiva</h3>
+            <p>Estruturas aeronáuticas, componentes de motores, fixadores e peças de alto desempenho em veículos esportivos e de competição.</p>
+          </article>
+          <article class="application-card">
+            <h3>Química e Naval</h3>
+            <p>Reatores, trocadores de calor, tubulações, componentes expostos a cloretos e estruturas submarinas que operam em meios agressivos.</p>
+          </article>
+          <article class="application-card">
+            <h3>Biomédica</h3>
+            <p>Próteses, placas, parafusos, implantes odontológicos e dispositivos onde biocompatibilidade e osteointegração são essenciais.</p>
+          </article>
+          <article class="application-card">
+            <h3>Variados</h3>
+            <p>Raquetes, bicicletas, equipamentos esportivos e produtos de consumo premium que se beneficiam de leveza e durabilidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Futuro e conclusão -->
+    <section id="futuro">
+      <div class="container section-card">
+        <div class="section-heading">
+          <span class="section-kicker">5. O Futuro e Conclusão</span>
+          <h2 class="section-title">O futuro do titânio passa por custo, superfície e fabricação avançada</h2>
+        </div>
+
+        <div class="future-grid">
+          <div class="future-highlight">
+            <strong>Resumo crítico</strong>
+            <p>
+              O grande diferencial do titânio continua sendo sua alta relação resistência/peso, mas o uso em larga escala ainda é limitado pelo alto custo de produção e processamento. Por isso, o desenvolvimento de rotas mais eficientes de extração, conformação e acabamento é estratégico para ampliar sua competitividade.
+            </p>
+          </div>
+
+          <div>
+            <ul class="future-list">
+              <li><strong>Engenharia de superfície:</strong> anodização e texturização a laser permitem controlar rugosidade, estética, aderência biológica e resistência funcional.</li>
+              <li><strong>Manufatura aditiva:</strong> a impressão 3D amplia a liberdade de projeto, reduz perdas de material e favorece geometrias complexas de alta performance.</li>
+              <li><strong>Perspectiva industrial:</strong> o titânio tende a crescer onde o desempenho total do sistema vale mais do que o custo inicial do metal.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final com download do PDF -->
+    <section id="download">
+      <div class="container cta">
+        <h2>Material de apoio pronto para baixar</h2>
+        <p>
+          Use este seminário como base para revisão, apresentação oral ou estudo dirigido. O botão abaixo leva ao arquivo PDF complementar do conteúdo.
+        </p>
+        <a class="download-btn" href="Seminario_FCM.pdf" download>
+          Baixar Material Completo do Seminário (PDF)
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-line"></div>
+      <div>Seminário estático desenvolvido para apresentação acadêmica em Fundamentos de Ciência dos Materiais.</div>
+    </div>
+  </footer>
+</body>
+</html>
