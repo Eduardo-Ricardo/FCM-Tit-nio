@@ -624,11 +624,6 @@
       filter: brightness(1.02);
     }
 
-    .download-btn::after {
-      content: "↘";
-      font-size: 1.1rem;
-    }
-
     footer {
       padding: 18px 0 42px;
       color: var(--muted);
@@ -976,16 +971,21 @@
       </div>
     </section>
 
-    <!-- CTA final com download do PDF -->
+    <!-- CTA final com downloads do PDF -->
     <section id="download">
       <div class="container cta">
         <h2>Material de apoio pronto para baixar</h2>
         <p>
-          Use este seminário como base para revisão, apresentação oral ou estudo dirigido. O botão abaixo leva ao arquivo PDF complementar do conteúdo.
+          Acesse a apresentação do seminário ou o dossiê técnico completo com referências e detalhes expandidos sobre cada tema abordado.
         </p>
-        <a class="download-btn" href="Seminario_FCM.pdf" download>
-          Baixar Material Completo do Seminário (PDF)
-        </a>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 24px;">
+          <a class="download-btn" href="Seminario_FCM.pdf" download style="animation: floatPulse 3.8s ease-in-out infinite;">
+            Seminário (PDF)
+          </a>
+          <a class="download-btn" href="Dossie_FCM.pdf" download style="animation: floatPulse 3.8s ease-in-out infinite 0.2s;">
+            Dossiê Técnico (PDF)
+          </a>
+        </div>
       </div>
     </section>
   </main>
